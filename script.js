@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function type() {
         const currentWord = words[wordIndex];
-        
+
         if (isDeleting) {
             typingText.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const headerOffset = 80;
                 const elementPosition = aboutSection.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
@@ -136,24 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('show');
+                entry.target.classList.add('visible');
                 observer.unobserve(entry.target); // Only animate once
             }
         });
     }, observerOptions);
 
-    const hiddenElements = document.querySelectorAll('.section-title, .about-content, .skill-category, .project-card, .timeline-item, .cert-card, .profile-card');
-    
-    // Add hidden class initially and observe
-    hiddenElements.forEach((el, index) => {
-        el.classList.add('hidden');
-        // Add staggered delay for grid items
-        if (el.classList.contains('skill-category') || el.classList.contains('project-card') || el.classList.contains('cert-card') || el.classList.contains('profile-card')) {
-            // Simple stagger based on index or position in parent would be better, but this is a quick way if they are sequential
-            // Actually, let's just let them pop in as they appear or use CSS nth-child delays if we were precise.
-            // For now, let's just rely on the natural scroll reveal or add a slight random delay via style if needed.
-            // But 'hidden' class handles the transition.
-        }
+    const scrollElements = document.querySelectorAll('.section-title, .about-content, .skill-category, .project-card, .timeline-item, .cert-card, .profile-card');
+
+    // Add scroll-reveal class initially and observe
+    scrollElements.forEach((el) => {
+        el.classList.add('scroll-reveal');
         observer.observe(el);
     });
 });

@@ -39,7 +39,7 @@ resource "aws_instance" "web_server" {
               sudo apt-get install -y docker.io
               sudo systemctl start docker
               sudo systemctl enable docker
-              sudo docker run -d -p 80:80 DOCKER_USERNAME/my-portfolio:latest
+              sudo docker run -d -p 80:80 nammalwarsai/my-portfolio:latest
               EOF
 
   tags = {
