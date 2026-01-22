@@ -9,6 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader-content">
+            <div class="scanner"></div>
+            <div class="loading-text">SYSTEM INITIALIZING...</div>
+            <div class="loading-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-progress"></div>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <canvas id="canvas-bg"></canvas>
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">KRSN.</a>
@@ -20,6 +35,9 @@
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-sun"></i>
+            </div>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
@@ -29,7 +47,7 @@
     <header id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Hi, I'm <span class="highlight">Kurapati Raja Sai Nammalwar</span></h1>
+                <h1 class="glitch-wrapper">Hi, I'm <span class="highlight glitch" data-text="Kurapati Raja Sai Nammalwar">Kurapati Raja Sai Nammalwar</span></h1>
                 <h2><span class="typing-text"></span><span class="cursor">|</span></h2>
                 <p>Passionate about building scalable cloud-native applications and infrastructure automation.</p>
                 <div class="social-links">
