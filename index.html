@@ -883,19 +883,142 @@ ul {
     flex-wrap: wrap;
 }
 
+.cert-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.cert-section-title.completed i {
+    color: #10b981;
+}
+
+.cert-section-title.in-progress i {
+    color: var(--accent-color);
+}
+
 .cert-card {
     background: var(--bg-card);
     border: var(--glass-border);
-    padding: 2rem;
+    padding: 1.5rem 2rem 2rem;
     border-radius: 16px;
-    width: 300px;
+    width: 320px;
     text-align: center;
     transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cert-card:hover {
     transform: translateY(-5px);
     background: rgba(30, 41, 59, 0.9);
+}
+
+/* Completed Certification Styles */
+.cert-completed {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #10b981, var(--primary-color)) border-box;
+}
+
+.cert-completed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981, var(--primary-color));
+}
+
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+    margin-bottom: 0.75rem;
+}
+
+.cert-badge i {
+    font-size: 0.8rem;
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white;
+}
+
+.cert-date {
+    color: #10b981 !important;
+    font-weight: 600;
+}
+
+.view-cert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition-medium);
+}
+
+a.cert-card:hover .view-cert-btn {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+}
+
+/* In Progress Certification Styles */
+.cert-in-progress {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, var(--accent-color), var(--secondary-color)) border-box;
+}
+
+.cert-in-progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+}
+
+.cert-progress-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(192, 132, 252, 0.4);
+    margin-bottom: 0.75rem;
+}
+
+.cert-progress-badge i {
+    font-size: 0.8rem;
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white;
 }
 
 .cert-card i {
@@ -905,6 +1028,7 @@ ul {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
+    display: block;
 }
 
 .cert-card h4 {
@@ -1264,26 +1388,54 @@ footer {
             </div>
 
             <div class="certifications-wrapper">
-                <h3>Certifications (In Progress)</h3>
+                <h3 class="cert-section-title completed">
+                    <i class="fas fa-trophy"></i> Completed Certifications
+                </h3>
                 <div class="cert-grid">
-                    <div class="cert-card">
+                    <a href="https://drive.google.com/file/d/1wqHjTamvHksRdfz92Ot220oQRyhci8lr/view?usp=drive_link" target="_blank" class="cert-card cert-completed">
+                        <div class="cert-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified</span>
+                        </div>
                         <i class="fab fa-aws"></i>
                         <h4>AWS Certified Cloud Practitioner</h4>
-                        <p>Expected: January 2026</p>
+                        <p class="cert-date">Completed: January 2026</p>
+                        <span class="view-cert-btn">
+                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        </span>
+                    </a>
+                    <div class="cert-card cert-completed">
+                        <div class="cert-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified</span>
+                        </div>
+                        <i class="fas fa-language"></i>
+                        <h4>Cambridge Linguaskill General English</h4>
+                        <p class="cert-date">CEFR B2 Level - 2023</p>
                     </div>
-                    <div class="cert-card">
+                </div>
+                
+                <h3 class="cert-section-title in-progress" style="margin-top: 3rem;">
+                    <i class="fas fa-spinner fa-pulse"></i> Certifications In Progress
+                </h3>
+                <div class="cert-grid">
+                    <div class="cert-card cert-in-progress">
+                        <div class="cert-progress-badge">
+                            <i class="fas fa-clock"></i>
+                            <span>In Progress</span>
+                        </div>
                         <i class="fab fa-aws"></i>
                         <h4>AWS Certified Solutions Architect - Associate</h4>
                         <p>Expected: March 2026</p>
                     </div>
-                </div>
-                
-                <h3 style="margin-top: 2rem;">Professional Certifications</h3>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <i class="fas fa-language"></i>
-                        <h4>Cambridge Linguaskill General English</h4>
-                        <p>CEFR B2 Level - 2023</p>
+                    <div class="cert-card cert-in-progress">
+                        <div class="cert-progress-badge">
+                            <i class="fas fa-clock"></i>
+                            <span>In Progress</span>
+                        </div>
+                        <i class="fab fa-aws"></i>
+                        <h4>AWS Certified Developer - Associate</h4>
+                        <p>Expected: July 2026</p>
                     </div>
                 </div>
             </div>
