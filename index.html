@@ -718,8 +718,14 @@ ul {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
     gap: 2.5rem;
+}
+
+.projects-grid .project-card:nth-child(3) {
+    grid-column: 1 / -1;
+    width: calc((100% - 2.5rem) / 2);
+    justify-self: center;
 }
 
 .project-card {
@@ -751,13 +757,13 @@ ul {
 }
 
 .project-links a {
-    color: var(--text-muted);
+    color: #ef4444;
     font-size: 1.2rem;
     margin-left: 10px;
 }
 
 .project-links a:hover {
-    color: var(--primary-color);
+    color: #f87171;
 }
 
 .project-tech {
@@ -792,6 +798,14 @@ ul {
 .project-card:hover .project-details li {
     color: #ffffff;
     text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.project-details a {
+    color: #ff0000;
+}
+
+.project-details a:hover {
+    color: #ff0000;
 }
 
 /* Timeline/Education */
@@ -1202,6 +1216,16 @@ footer {
     .timeline-item::after {
         left: 23px;
     }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid .project-card:nth-child(3) {
+        grid-column: auto;
+        width: 100%;
+        justify-self: stretch;
+    }
 }
 
 @keyframes fadeInUp {
@@ -1391,6 +1415,31 @@ footer {
                         <li>Demonstrated end-to-end ownership from ideation and development to deployment, testing, and performance optimization through modular clean-code practices.</li>
                         <li>Git Hub link for the project: <a href="https://github.com/nammalwarsai/CBALMS_SDC_3.2" target="_blank">https://github.com/nammalwarsai/CBALMS_SDC_3.2</a></li>
 
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>PRANAPREDICT AI Live & Deployed</h3>
+                        <div class="project-links">
+                            <a href="https://prana-predict-ai.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span>React.js</span>
+                        <span>Node.js</span>
+                        <span>SQL</span>
+                        <span>Hugging Face</span>
+                        <span>Supabase</span>
+                        <span>Render</span>
+                        <span>Vercel</span>
+                    </div>
+                    <ul class="project-details">
+                        <li>Engineered an AI-powered health risk prediction platform with a React + Vite frontend and Node.js/Express backend, integrating Supabase for authentication and data storage.</li>
+                        <li>Integrated Hugging Face Inference API with Qwen/Qwen2.5-7B-Instruct-Turbo to generate personalized health guidance alongside rule-based risk scoring.</li>
+                        <li>Deployed the frontend on Vercel and backend on Render with environment-based URL mapping, enabling stable cross-platform communication in production.</li>
+                        <li>Live link: <a href="https://prana-predict-ai.vercel.app/" target="_blank">https://prana-predict-ai.vercel.app/</a></li>
+                        <li>GitHub link: <a href="https://github.com/nammalwarsai/PranaPredict_AI" target="_blank">https://github.com/nammalwarsai/PranaPredict_AI</a></li>
                     </ul>
                 </div>
             </div>
