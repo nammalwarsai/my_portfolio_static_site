@@ -1154,6 +1154,322 @@ footer {
     transform: translateY(0);
 }
 
+/* =========================
+   Clean UI Refinements
+   ========================= */
+:root {
+    --bg-dark: #0b1220;
+    --bg-card: rgba(15, 23, 42, 0.74);
+    --primary-color: #60a5fa;
+    --secondary-color: #818cf8;
+    --accent-color: #22c55e;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --glass-border: 1px solid rgba(148, 163, 184, 0.2);
+    --glass-shadow: 0 12px 30px rgba(2, 6, 23, 0.35);
+    --backdrop-blur: blur(10px);
+    --hover-glow: 0 12px 30px rgba(37, 99, 235, 0.2);
+}
+
+[data-theme="light"] {
+    --bg-dark: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.88);
+    --primary-color: #2563eb;
+    --secondary-color: #4f46e5;
+    --accent-color: #16a34a;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --glass-border: 1px solid rgba(15, 23, 42, 0.1);
+    --glass-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    --hover-glow: 0 10px 24px rgba(37, 99, 235, 0.15);
+}
+
+body {
+    background:
+        radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.12), transparent 30%),
+        radial-gradient(circle at 95% 15%, rgba(129, 140, 248, 0.1), transparent 28%),
+        var(--bg-dark);
+}
+
+#canvas-bg {
+    opacity: 0.24;
+}
+
+.cursor-dot,
+.cursor-outline {
+    display: none !important;
+}
+
+.section {
+    padding: 84px 0;
+}
+
+.section-title {
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, var(--text-primary) 20%, var(--primary-color));
+}
+
+.navbar {
+    padding: 1.1rem 0;
+    background: rgba(11, 18, 32, 0.55);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--glass-border);
+}
+
+[data-theme="light"] .navbar {
+    background: rgba(248, 250, 252, 0.8);
+}
+
+.navbar.scrolled {
+    background: rgba(11, 18, 32, 0.82);
+    box-shadow: 0 8px 30px rgba(2, 6, 23, 0.25);
+}
+
+[data-theme="light"] .navbar.scrolled {
+    background: rgba(248, 250, 252, 0.92);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.nav-links {
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, var(--text-primary), #cbd5e1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero h2 {
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.06rem;
+    line-height: 1.8;
+    max-width: 680px;
+}
+
+.glitch::before,
+.glitch::after {
+    display: none;
+}
+
+.social-links a {
+    border: var(--glass-border);
+    background: rgba(148, 163, 184, 0.08);
+    box-shadow: none;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+.btn {
+    text-transform: none;
+    letter-spacing: 0.01em;
+    border-radius: 14px;
+    padding: 12px 24px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 10px 24px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary {
+    border-width: 1px;
+}
+
+.about-content,
+.skill-category,
+.project-card,
+.timeline-content,
+.cert-card,
+.profile-card {
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+}
+
+.about-content,
+.skill-category,
+.project-card,
+.timeline-content,
+.cert-card,
+.profile-card,
+.theme-toggle {
+    backdrop-filter: var(--backdrop-blur);
+}
+
+.project-card::after,
+.skill-category::after,
+.cert-card::after,
+.profile-card::after {
+    display: none;
+}
+
+.skill-category:hover,
+.project-card:hover,
+.cert-card:hover,
+.profile-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--hover-glow);
+}
+
+.project-card:hover {
+    border-color: rgba(96, 165, 250, 0.4);
+}
+
+.project-links a,
+.project-details a {
+    color: var(--primary-color);
+}
+
+.project-links a:hover,
+.project-details a:hover {
+    color: var(--secondary-color);
+}
+
+.project-tech span {
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    background: rgba(96, 165, 250, 0.12);
+    color: #bfdbfe;
+}
+
+[data-theme="dark"] .project-card {
+    background: rgba(15, 23, 42, 0.74);
+}
+
+[data-theme="dark"] .project-card:hover {
+    background: rgba(30, 41, 59, 0.9);
+}
+
+[data-theme="dark"] .project-header h3,
+[data-theme="dark"] .project-details li {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .project-card:hover .project-details li {
+    color: #ffffff;
+    text-shadow: none;
+}
+
+[data-theme="dark"] .project-links a,
+[data-theme="dark"] .project-details a {
+    color: #93c5fd;
+}
+
+[data-theme="dark"] .project-links a:hover,
+[data-theme="dark"] .project-details a:hover {
+    color: #c7d2fe;
+}
+
+[data-theme="light"] .project-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+[data-theme="light"] .project-card:hover {
+    background: #ffffff;
+    border-color: rgba(37, 99, 235, 0.35);
+}
+
+[data-theme="light"] .project-header h3,
+[data-theme="light"] .project-details li {
+    color: #0f172a;
+}
+
+[data-theme="light"] .project-card:hover .project-details li {
+    color: #0f172a;
+    text-shadow: none;
+}
+
+[data-theme="light"] .project-links a,
+[data-theme="light"] .project-details a {
+    color: #1d4ed8;
+}
+
+[data-theme="light"] .project-links a:hover,
+[data-theme="light"] .project-details a:hover {
+    color: #3730a3;
+}
+
+[data-theme="light"] .project-tech span {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e40af;
+}
+
+[data-theme="light"] #projects .section-title {
+    background: none;
+    -webkit-text-fill-color: #0f172a;
+    color: #0f172a;
+}
+
+/* Ensure all headings are readable in light mode */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+    color: #0f172a;
+    text-shadow: none;
+}
+
+/* Remove gradient-clipped heading text that can disappear in light mode */
+[data-theme="light"] .section-title,
+[data-theme="light"] .hero h1 {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-text-fill-color: #0f172a;
+    color: #0f172a;
+}
+
+.timeline::after {
+    background: linear-gradient(to bottom, rgba(96, 165, 250, 0.2), rgba(129, 140, 248, 0.25));
+}
+
+footer {
+    background: rgba(11, 18, 32, 0.8);
+}
+
+[data-theme="light"] footer {
+    background: rgba(241, 245, 249, 0.8);
+}
+
+/* Disable intense transforms for cleaner feel */
+.btn-magnetic {
+    transition: transform 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-magnetic:hover {
+        transform: translateY(-2px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .nav-links {
@@ -1799,49 +2115,46 @@ footer {
         if(cursorOutline) cursorOutline.style.display = 'none';
     }
 
-    // --- Magnetic Buttons ---
-    const magneticBtns = document.querySelectorAll('.btn, .social-links a, .theme-toggle');
-    
-    magneticBtns.forEach(btn => {
-        btn.classList.add('btn-magnetic'); // Ensure class is added
+    // --- Optional Interactive Effects (kept disabled for cleaner UX) ---
+    const enableInteractiveEffects = false;
+    if (enableInteractiveEffects) {
+        const magneticBtns = document.querySelectorAll('.btn, .social-links a, .theme-toggle');
         
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+        magneticBtns.forEach(btn => {
+            btn.classList.add('btn-magnetic');
             
-            // Magnetic pull strength (lower = stronger)
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
         });
 
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-        });
-    });
+        const tiltElements = document.querySelectorAll('.project-card, .skill-category, .cert-card, .profile-card');
+        
+        tiltElements.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
 
-    // --- 3D Tilt Effect ---
-    const tiltElements = document.querySelectorAll('.project-card, .skill-category, .cert-card, .profile-card');
-    
-    tiltElements.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Calculate rotation based on cursor position
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg rotation
-            const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
 
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
         });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-        });
-    });
+    }
 
     // --- Canvas Constellation Effect ---
     const canvas = document.getElementById('canvas-bg');
