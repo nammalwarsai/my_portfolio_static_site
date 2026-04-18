@@ -1277,18 +1277,18 @@ footer::before {
    Clean UI Refinements
    ========================= */
 :root {
-    --bg-dark: #0a0e27;
-    --bg-card: rgba(15, 23, 42, 0.65);
-    --primary-color: #3b82f6;
-    --secondary-color: #8b5cf6;
-    --accent-color: #06b6d4;
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-    --glass-border: 1px solid rgba(148, 163, 184, 0.15);
-    --glass-shadow: 0 20px 50px rgba(2, 6, 23, 0.4);
+    --bg-dark: #050816;
+    --bg-card: rgba(15, 23, 42, 0.72);
+    --primary-color: #60a5fa;
+    --secondary-color: #a78bfa;
+    --accent-color: #22d3ee;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --glass-border: 1px solid rgba(148, 163, 184, 0.22);
+    --glass-shadow: 0 24px 60px rgba(2, 6, 23, 0.5);
     --backdrop-blur: blur(12px);
-    --hover-glow: 0 20px 40px rgba(59, 130, 246, 0.25);
+    --hover-glow: 0 18px 45px rgba(56, 189, 248, 0.24), 0 8px 20px rgba(167, 139, 250, 0.18);
 }
 
 [data-theme="light"] {
@@ -1306,6 +1306,18 @@ footer::before {
 }
 
 body {
+    background: var(--bg-dark);
+}
+
+[data-theme="dark"] body {
+    background:
+        radial-gradient(circle at 8% 10%, rgba(56, 189, 248, 0.16), transparent 30%),
+        radial-gradient(circle at 84% 16%, rgba(167, 139, 250, 0.14), transparent 32%),
+        radial-gradient(circle at 50% 85%, rgba(34, 211, 238, 0.1), transparent 35%),
+        linear-gradient(160deg, #020617 0%, #0a1028 52%, #111827 100%);
+}
+
+[data-theme="light"] body {
     background:
         radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.12), transparent 30%),
         radial-gradient(circle at 95% 15%, rgba(129, 140, 248, 0.1), transparent 28%),
@@ -1351,6 +1363,16 @@ body {
 [data-theme="light"] .navbar.scrolled {
     background: rgba(248, 250, 252, 0.92);
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="dark"] .navbar {
+    background: linear-gradient(120deg, rgba(2, 6, 23, 0.76), rgba(15, 23, 42, 0.7));
+    border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background: linear-gradient(120deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.9));
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.45);
 }
 
 .nav-links {
@@ -1432,6 +1454,39 @@ body {
     backdrop-filter: var(--backdrop-blur);
 }
 
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .hero h1 {
+    background: linear-gradient(120deg, #f8fafc 5%, #7dd3fc 45%, #c4b5fd 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .social-links a {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.55));
+    border-color: rgba(96, 165, 250, 0.35);
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .social-links a:hover {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    border-color: rgba(191, 219, 254, 0.65);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(125, 211, 252, 0.45);
+    color: #e2e8f0;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(139, 92, 246, 0.34));
+    border-color: rgba(196, 181, 253, 0.7);
+    box-shadow: 0 16px 35px rgba(59, 130, 246, 0.35), 0 0 30px rgba(139, 92, 246, 0.25);
+}
+
 .project-card::after,
 .skill-category::after,
 .cert-card::after,
@@ -1467,12 +1522,23 @@ body {
     color: #bfdbfe;
 }
 
-[data-theme="dark"] .project-card {
-    background: rgba(15, 23, 42, 0.74);
+[data-theme="dark"] .about-content,
+[data-theme="dark"] .skill-category,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .timeline-content,
+[data-theme="dark"] .cert-card,
+[data-theme="dark"] .profile-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.58));
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    box-shadow: 0 18px 45px rgba(2, 6, 23, 0.45), inset 0 1px 0 rgba(148, 163, 184, 0.18);
 }
 
-[data-theme="dark"] .project-card:hover {
-    background: rgba(30, 41, 59, 0.9);
+[data-theme="dark"] .skill-category:hover,
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .cert-card:hover,
+[data-theme="dark"] .profile-card:hover {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.7));
+    border-color: rgba(125, 211, 252, 0.5);
 }
 
 [data-theme="dark"] .project-header h3,
@@ -1492,7 +1558,13 @@ body {
 
 [data-theme="dark"] .project-links a:hover,
 [data-theme="dark"] .project-details a:hover {
-    color: #c7d2fe;
+    color: #c4b5fd;
+}
+
+[data-theme="dark"] .project-tech span {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.18));
+    border-color: rgba(125, 211, 252, 0.4);
+    color: #dbeafe;
 }
 
 [data-theme="light"] .project-card {
