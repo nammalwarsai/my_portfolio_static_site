@@ -39,9 +39,10 @@
             --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
             --shadow-glow: 0 0 40px rgba(6, 214, 160, 0.15);
             
-            --transition-fast: 0.15s ease;
-            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Faster Transitions */
+            --transition-fast: 0.12s ease;
+            --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             
             --nav-height: 72px;
         }
@@ -90,7 +91,27 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Background */
+        /* --- Interactive Mouse Glow --- */
+        .mouse-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(6, 214, 160, 0.12), transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            mix-blend-mode: screen;
+            will-change: left, top;
+        }
+
+        [data-theme="light"] .mouse-glow {
+            background: radial-gradient(circle, rgba(6, 214, 160, 0.08), transparent 60%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Background Layer */
         .bg-layer {
             position: fixed;
             inset: 0;
@@ -114,12 +135,23 @@
                 radial-gradient(ellipse 50% 30% at 10% 60%, rgba(124, 58, 237, 0.05), transparent);
         }
 
+        /* Noise Texture Overlay for Premium Feel */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
         .floating-orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(60px);
             opacity: 0.5;
             animation: float 20s ease-in-out infinite;
+            will-change: transform;
         }
 
         .orb-1 {
@@ -177,7 +209,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .preloader.hidden {
@@ -198,7 +230,7 @@
             border: 3px solid var(--border-subtle);
             border-top-color: var(--accent-primary);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
@@ -223,7 +255,7 @@
             background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             z-index: 10001;
             width: 0%;
-            transition: width 0.1s linear;
+            transition: width 0.05s linear;
         }
 
         /* Typography */
@@ -263,7 +295,7 @@
             padding: 0 24px;
         }
 
-        /* Buttons */
+        /* Buttons with Magnetic Class */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -277,6 +309,8 @@
             border: none;
             transition: var(--transition-base);
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
@@ -341,6 +375,7 @@
             color: var(--text-primary);
             text-decoration: none;
             position: relative;
+            z-index: 2; /* Above mouse glow */
         }
 
         .logo span {
@@ -420,6 +455,7 @@
             color: var(--text-primary);
             cursor: pointer;
             font-size: 1.25rem;
+            z-index: 2;
         }
 
         /* Hero */
@@ -429,6 +465,7 @@
             align-items: center;
             padding-top: var(--nav-height);
             position: relative;
+            z-index: 2;
         }
 
         .hero-content {
@@ -470,12 +507,26 @@
             line-height: 1.1;
         }
 
+        /* Shimmer Name Animation */
         .hero-name {
             display: block;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            background: linear-gradient(
+                90deg, 
+                var(--accent-primary), 
+                var(--accent-secondary), 
+                #a5f3fc, 
+                var(--accent-primary)
+            );
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-subtitle {
@@ -558,6 +609,7 @@
             color: var(--text-muted);
             font-size: 0.8rem;
             animation: bounce 2s ease-in-out infinite;
+            z-index: 2;
         }
 
         .scroll-indicator i {
@@ -573,6 +625,7 @@
         .section {
             padding: 100px 0;
             position: relative;
+            z-index: 2;
         }
 
         .section-header {
@@ -668,6 +721,11 @@
             background: rgba(255, 255, 255, 0.02);
             border-radius: var(--radius-md);
             border: 1px solid var(--border-subtle);
+            transition: var(--transition-fast);
+        }
+
+        .highlight-item:hover {
+            border-color: var(--border-accent);
         }
 
         [data-theme="light"] .highlight-item {
@@ -815,6 +873,12 @@
             font-size: 5rem;
             color: var(--accent-primary);
             opacity: 0.8;
+            transition: var(--transition-base);
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1);
+            opacity: 1;
         }
 
         .project-content {
@@ -1167,6 +1231,8 @@
             background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid var(--border-subtle);
             padding: 80px 0 40px;
+            position: relative;
+            z-index: 2;
         }
 
         [data-theme="light"] .footer {
@@ -1222,8 +1288,8 @@
         /* Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px); /* Reduced from 40px for snappier feel */
+            transition: opacity 0.6s ease, transform 0.6s ease; /* Faster transition */
         }
 
         .reveal.visible {
@@ -1231,11 +1297,11 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-1 { transition-delay: 0.05s; }
+        .reveal-delay-2 { transition-delay: 0.1s; }
+        .reveal-delay-3 { transition-delay: 0.15s; }
+        .reveal-delay-4 { transition-delay: 0.2s; }
+        .reveal-delay-5 { transition-delay: 0.25s; }
 
         /* Mobile Responsive */
         @media (max-width: 1024px) {
@@ -1302,6 +1368,7 @@
                 gap: 16px;
                 transition: right 0.3s ease;
                 border-left: 1px solid var(--border-subtle);
+                z-index: 10;
             }
 
             .nav-links.active {
@@ -1365,6 +1432,9 @@
         </div>
     </div>
 
+    <!-- Mouse Glow Effect -->
+    <div class="mouse-glow"></div>
+
     <!-- Background -->
     <div class="bg-layer">
         <div class="bg-gradient"></div>
@@ -1373,6 +1443,9 @@
         <div class="floating-orb orb-3"></div>
         <div class="grid-pattern"></div>
     </div>
+    
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
 
     <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
@@ -1856,13 +1929,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Preloader
+            // --- Optimized Preloader ---
             const preloader = document.querySelector('.preloader');
+            // Faster load time
             setTimeout(() => {
                 preloader.classList.add('hidden');
-            }, 1500);
+            }, 800);
 
-            // Theme Toggle
+            // --- Theme Toggle ---
             const themeToggle = document.querySelector('.theme-toggle');
             const themeIcon = themeToggle.querySelector('i');
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1888,7 +1962,7 @@
                 }
             }
 
-            // Mobile Navigation
+            // --- Mobile Navigation ---
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
             
@@ -1907,17 +1981,25 @@
                 });
             });
 
-            // Navbar Scroll
+            // --- Navbar Scroll (Throttled) ---
             const navbar = document.querySelector('.navbar');
+            let ticking = false;
+            
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        if (window.scrollY > 50) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
             });
 
-            // Scroll Progress
+            // --- Scroll Progress (Throttled) ---
             const scrollProgress = document.querySelector('.scroll-progress');
             window.addEventListener('scroll', () => {
                 const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1925,7 +2007,7 @@
                 scrollProgress.style.width = `${progress}%`;
             });
 
-            // Active Nav Link
+            // --- Active Nav Link ---
             const sections = document.querySelectorAll('section, header');
             const navItems = document.querySelectorAll('.nav-links a');
 
@@ -1946,7 +2028,7 @@
                 });
             });
 
-            // Smooth Scroll
+            // --- Smooth Scroll ---
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1963,7 +2045,7 @@
                 });
             });
 
-            // Typing Effect
+            // --- Typing Effect ---
             const typingText = document.querySelector('.typing-text');
             if (typingText) {
                 const words = ['Cloud Enthusiast', 'CS Student', 'DevOps Aspirant', 'AWS Certified'];
@@ -1982,30 +2064,31 @@
                         charIndex++;
                     }
 
-                    let typeSpeed = isDeleting ? 50 : 100;
+                    let typeSpeed = isDeleting ? 40 : 80; // Faster typing
 
                     if (!isDeleting && charIndex === currentWord.length) {
-                        typeSpeed = 2000;
+                        typeSpeed = 1500;
                         isDeleting = true;
                     } else if (isDeleting && charIndex === 0) {
                         isDeleting = false;
                         wordIndex = (wordIndex + 1) % words.length;
-                        typeSpeed = 500;
+                        typeSpeed = 300;
                     }
 
                     setTimeout(type, typeSpeed);
                 }
                 
-                setTimeout(type, 1000);
+                setTimeout(type, 800);
             }
 
-            // Scroll Reveal
+            // --- Scroll Reveal (Optimized) ---
             const revealElements = document.querySelectorAll('.reveal');
             
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target); // Stop observing once revealed
                     }
                 });
             }, {
@@ -2014,6 +2097,40 @@
             });
 
             revealElements.forEach(el => revealObserver.observe(el));
+
+            // --- Interactive Mouse Glow ---
+            const mouseGlow = document.querySelector('.mouse-glow');
+            
+            // Only run on non-touch devices
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+            if (!isTouchDevice && mouseGlow) {
+                let mouseX = window.innerWidth / 2;
+                let mouseY = window.innerHeight / 2;
+                let glowX = mouseX;
+                let glowY = mouseY;
+                
+                // Track mouse position
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                // Smooth animation loop
+                function animateGlow() {
+                    // Lerp formula for smooth delay
+                    glowX += (mouseX - glowX) * 0.08;
+                    glowY += (mouseY - glowY) * 0.08;
+                    
+                    mouseGlow.style.left = glowX + 'px';
+                    mouseGlow.style.top = glowY + 'px';
+                    
+                    requestAnimationFrame(animateGlow);
+                }
+                animateGlow();
+            } else if (mouseGlow) {
+                mouseGlow.style.display = 'none';
+            }
         });
     </script>
 </body>
